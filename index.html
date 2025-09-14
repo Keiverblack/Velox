@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="encabezado">
+            <h1>Velox</h1>
+            <nav>
+                <a href="">Home</a>
+                <a href="#mapa">Ubicación</a>
+                <a href="">Atención al Cliente</a>
+                <a href="">Contacto</a>
+                <a href="IniciarSession.html"><input type="submit" value="Iniciar Sesión" class="boton" href="IniciarSesion.html"></a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="carrusel">
+        <ul>
+            <li>
+                <img src="Imagenes/Velox.png" alt="">
+            </li>
+            <li>
+                <img src="Imagenes/2.png" alt="">
+            </li>
+            <li>
+                <img src="Imagenes/3.png" alt="">
+            </li>
+            <li>
+                <img src="Imagenes/Velox.png" alt="">
+            </li>
+        </ul>
+    </div>
+
+    <div class="carta-padre">
+        <div class="carta">
+            <h2>Mision</h2>
+            <p>"Brindar servicios de internet y soluciones digitales de alta calidad, 
+                seguros y accesibles, que conecten a las personas y organizaciones, 
+                fomentando la innovación, la inclusión tecnológica y 
+                el desarrollo sostenible en cada comunidad donde operamos."</p>
+        </div>
+
+        <div class="carta">
+            <h2>Vision</h2>
+            <p>"Ser la empresa líder en soluciones digitales y de conectividad, reconocida 
+                por ofrecer un servicio confiable, innovador y accesible que impulse la 
+                transformación digital de personas, empresas y comunidades, mejorando su 
+                calidad de vida y generando un impacto positivo en la sociedad."</p>
+        </div>
+
+        <div class="carta">
+            <h2>Objetivos</h2>
+            <li>Crecimiento de usuarios/clientes</li>
+        
+            <li>Incrementar en un 40% la base de usuarios registrados en un periodo de 12 meses. </li>
+
+            <li>Alcanzar un reconocimiento de marca a nivel nacional/regional mediante campañas digitales y presencia en medios especializados.</li>
+
+            <li>Garantizar un tiempo de actividad (uptime) superior al 99.9% en la plataforma.</li>
+
+            <li>Reducir en un 50% los tiempos de respuesta en atención al cliente.</li>
+        </div>
+    </div>
+
+    <div class="mapa" id="mapa">
+        <h2>Ubicación Actual</h2>
+        <div class="api">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <div class="carta-padre">
+            <div class="carta">
+                <h2>Servicio 1</h2>
+                <h3>Plan 1 – Básico Hogar</h3>
+
+                <li>Velocidad: 50 Mbps</li>
+
+                <li>Uso ideal: navegación, redes sociales, streaming en HD, clases online.</li>
+
+                <li>Beneficios: instalación gratuita, router WiFi incluido.</li>
+
+                <li>Precio estimado: económico, pensado para familias pequeñas.</li>
+
+                <input type="submit" value="Contratar">
+            </div>
+
+            <div class="carta">
+                <h2>Servicio 2</h2>
+                <h3>Plan 2 – Estándar Plus</h3>
+                
+                <li>Velocidad: 100 Mbps</li>
+
+                <li>Uso ideal: hogares con varios dispositivos, teletrabajo, streaming en Full HD.</li>
+
+                <li>Beneficios: soporte técnico rápido, estabilidad garantizada.</li>
+
+                <li>Precio estimado: accesible, buena relación costo/velocidad.</li>
+
+                <input type="submit" value="Contratar">
+            </div>
+
+            <div class="carta">
+                <h2>Servicio 3</h2>
+                <h3>Plan 3 – Premium Familiar</h3>
+                
+                <li>Velocidad: 300 Mbps</li>
+
+                <li>Uso ideal: hogares grandes, gaming, streaming en 4K, múltiples usuarios.</li>
+
+                <li>Beneficios: prioridad en soporte, router avanzado, seguridad adicional.</li>
+
+                <li>Precio estimado: premium, ideal para usuarios exigentes.</li>
+
+                <input type="submit" value="Contratar">
+            </div>
+
+            <div class="carta">
+                <h2>Servicio 4</h2>
+                <h3>Plan 4 – Empresarial Fibra Dedicada</h3>
+                
+                <li>Velocidad: desde 500 Mbps hasta 1 Gbps</li>
+
+                <li>Uso ideal: oficinas, pymes, grandes empresas con alta demanda de datos.</li>
+
+                <li>Beneficios: IP fija, soporte 24/7, contrato con SLA (acuerdo de nivel de servicio).</li>
+
+                <li>Precio estimado: competitivo frente a los proveedores tradicionales, con valor agregado en soporte.</li>
+                <br>
+                <input type="submit" value="Contratar">
+            </div>
+    </div>
+
+    <div class="video">
+        <h2>¿Que es la Fibra Optica?</h2>
+        <div class="video-hijo">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/aQWaM6U1ycM?si=lVJKfOpJqCydcP0b" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Derechos Reservados &copy; 2025</p>
+        <p>Desarrollado por Keiver Blanco</p>
+    </footer>
+    <script src="map.js"></script>
+</body>
+</html>
