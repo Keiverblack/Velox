@@ -8,3 +8,12 @@ function soloLetras(event) {
   }
   return true; // Si es una letra o espacio, permite que se escriba
 }
+function soloNumeros(event) {
+  var charCode = event.charCode; // Obtiene el código de la tecla presionada
+
+  // 48-57 son los códigos ASCII de los números 0-9
+  if (charCode < 48 || charCode > 57) {
+    return false; // Si no es un número, evita que se escriba
+  }
+  return true; // Si es un número, permite que se escriba
+}
