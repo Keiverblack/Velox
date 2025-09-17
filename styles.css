@@ -323,7 +323,7 @@ select{
 select:focus {
     border-color: #1e90ff;
 }
-input[type="tel"] {
+input[type="tel"], input[type="number"] {
     width: 65%;
     padding: 10px 15px;
     margin: 10px 0;

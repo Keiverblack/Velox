@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="encabezado">
+            <h1>Velox</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="">Ubicación</a>
+                <a href="">Atención al Cliente</a>
+                <a href="IniciarSession.html"><input type="submit" value="Iniciar Sesión" class="boton" href="IniciarSesion.html"></a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="carrusel">
+        <ul>
+            <li>
+                <img src="Imagenes/Velox.png" alt="">
+            </li>
+            <li>
+                <img src="Imagenes/2.png" alt="">
+            </li>
+            <li>
+                <img src="Imagenes/3.png" alt="">
+            </li>
+            <li>
+                <img src="Imagenes/Velox.png" alt="">
+            </li>
+        </ul>
+    </div>
+
+    <div class="carta-padre">
+        <div class="contacto">
+            <h2>Contacto:</h2>
+            <p>Si tienes alguna pregunta, comentario o necesitas asistencia, no dudes en contactarnos. 
+                El equipo de Velox esta aquí para ayudarte y brindarte el mejor servicio posible.</p>
+            <p>Teléfono: +58 412-9646226</p>
+            <p>Email: velox@gmail.com</p>
+            <p>Dirección: Avenida Francisco de Miranda, Caracas 1060, Miranda </p>
+        </div>
+        <div class="pasos">
+            <div class="manual">
+                <form action="">
+                <h2>Paso 1</h2>
+                <h3>Brindanos tu Ubicación</h3>
+                <p>Facilitanos la Ubicación de donde quiera brindar el servicio, 
+                    para verificar si tenemos capacidad en la zona</p>
+
+                    <input type="text" placeholder="Escribe tu Estado" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                    <br>
+                    <input type="text" placeholder="Escribe tu Ciudad" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                    <br>
+                    <input type="text" placeholder="Escribe tu Dirección" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                    <br>
+                <h2>Paso 2</h2>
+                <h3>Tu Identificación</h3>
+                <p>Completa tus datos personales y de contacto para realizar la solicitud de servicio.</p>
+                    <input type="text" id="ci" name="ci" placeholder="Cédula de Identidad"  pattern="[0-9]{8}" maxlength="8" title="El número de cédula debe tener 8 dígitos."  onkeypress="return soloNumeros(event)" required> <!-- Verificar lo del number -->
+                    <br>
+                    <input type="text" placeholder="Nombre Completo" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                    <br>
+                    <input type="email" placeholder="Correo Electronico" required>
+                    <br>
+                <select name="num" id="nume">
+                    <option value="info">Pre-fijos</option>
+                    <option value="0412">0412</option>
+                    <option value="0412">0422</option>
+                    <option value="0414">0414</option>
+                    <option value="0424">0424</option>
+                    <option value="0416">0416</option>
+                    <option value="0426">0426</option>
+                </select>
+                    <input type="tel" id="phone" name="phone" placeholder="Numero de telefono" pattern="[0-9]{10}" maxlength="7" title="El número de teléfono debe tener 8 dígitos." onkeypress="return soloNumeros(event)" required>
+                    <br>
+                    <h2>Paso 3</h2>
+                    <h3>Solicitud</h3>
+                    <p>Complete los campos para que su solicitud sea valida</p>
+                </form>
+            </div>
+        </div>
+    </div>
+            
+    <footer class="footer">
+        <p>Derechos Reservados &copy; 2025</p>
+        <p>Desarrollado por Keiver Blanco</p>
+    </footer>
+    <script src="validaciones.js"></script>
+</body>
+</html>
