@@ -18,7 +18,7 @@
             <h1>Velox</h1>
             <nav>
                 <a href="index.html">Home</a>
-                <a href="">Ubicación</a>
+                <a href="Ubicacion.html">Ubicación</a>
                 <a href="">Atención al Cliente</a>
                 <a href="IniciarSession.html"><input type="submit" value="Iniciar Sesión" class="boton" href="IniciarSesion.html"></a>
             </nav>
@@ -54,40 +54,60 @@
         <div class="pasos">
             <div class="manual">
                 <form action="">
-                <h2>Paso 1</h2>
-                <h3>Brindanos tu Ubicación</h3>
-                <p>Facilitanos la Ubicación de donde quiera brindar el servicio, 
-                    para verificar si tenemos capacidad en la zona</p>
+                    <h2>Paso 1</h2>
+                    <h3>Brindanos tu Ubicación</h3>
+                    <p>Facilitanos la Ubicación de donde quiera brindar el servicio, 
+                        para verificar si tenemos capacidad en la zona</p>
 
-                    <input type="text" placeholder="Escribe tu Estado" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
-                    <br>
-                    <input type="text" placeholder="Escribe tu Ciudad" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
-                    <br>
-                    <input type="text" placeholder="Escribe tu Dirección" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
-                    <br>
-                <h2>Paso 2</h2>
-                <h3>Tu Identificación</h3>
-                <p>Completa tus datos personales y de contacto para realizar la solicitud de servicio.</p>
-                    <input type="text" id="ci" name="ci" placeholder="Cédula de Identidad"  pattern="[0-9]{8}" maxlength="8" title="El número de cédula debe tener 8 dígitos."  onkeypress="return soloNumeros(event)" required> <!-- Verificar lo del number -->
-                    <br>
-                    <input type="text" placeholder="Nombre Completo" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
-                    <br>
-                    <input type="email" placeholder="Correo Electronico" required>
-                    <br>
-                <select name="num" id="nume">
-                    <option value="info">Pre-fijos</option>
-                    <option value="0412">0412</option>
-                    <option value="0412">0422</option>
-                    <option value="0414">0414</option>
-                    <option value="0424">0424</option>
-                    <option value="0416">0416</option>
-                    <option value="0426">0426</option>
-                </select>
-                    <input type="tel" id="phone" name="phone" placeholder="Numero de telefono" pattern="[0-9]{10}" maxlength="7" title="El número de teléfono debe tener 8 dígitos." onkeypress="return soloNumeros(event)" required>
-                    <br>
-                    <h2>Paso 3</h2>
-                    <h3>Solicitud</h3>
-                    <p>Complete los campos para que su solicitud sea valida</p>
+                        <input type="text" placeholder="Escribe tu Estado" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                        <br>
+                        <input type="text" placeholder="Escribe tu Ciudad" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                        <br>
+                        <input type="text" placeholder="Escribe tu Dirección" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                        <br>
+                    <h2>Paso 2</h2>
+                    <h3>Tu Identificación</h3>
+                    <p>Completa tus datos personales y de contacto para realizar la solicitud de servicio.</p>
+                        <input type="text" id="ci" name="ci" placeholder="Cédula de Identidad"  pattern="[0-9]{8}" maxlength="8" title="El número de cédula debe tener 8 dígitos."  onkeypress="return soloNumeros(event)" required> <!-- Verificar lo del number -->
+                        <br>
+                        <input type="text" placeholder="Nombre Completo" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                        <br>
+                        <input type="email" placeholder="Correo Electronico" required>
+                        <br>
+                    <select name="num" id="nume">
+                        <option value="info">Pre-fijos</option>
+                        <option value="0412">0412</option>
+                        <option value="0412">0422</option>
+                        <option value="0414">0414</option>
+                        <option value="0424">0424</option>
+                        <option value="0416">0416</option>
+                        <option value="0426">0426</option>
+                    </select>
+                        <input type="tel" id="phone" name="phone" placeholder="Numero de telefono" pattern="[0-9]{10}" maxlength="7" title="El número de teléfono debe tener 8 dígitos." onkeypress="return soloNumeros(event)" required>
+                        <br>
+                        <h2>Paso 3</h2>
+                        <h3>Solicitud</h3>
+                        <p>Complete los campos para que su solicitud sea valida</p>
+                    <label for="plan">Selecciona un Plan:   </label>
+                    <select name="plan" id="plan"><!--Hacer el items para que despliegue las opciones-->
+                        <option value="info">Plan</option>
+                        <option value="basico">Básico</option>
+                        <option value="intermedio">Intermedio</option>
+                        <option value="avanzado">Avanzado</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                        <br>
+                        <input type="text" placeholder="Municipio" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                        <br>
+                        <input type="text" placeholder="Urbanización/Edificio" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
+                        <br>
+                        <input type="number" placeholder="Numero de Casa / Apartamento" maxlength="4" title="El código postal debe tener 4 dígitos." onkeypress="return soloNumeros(event)" required>
+                        <br>
+                        <label>Comentario</label>
+                        <br>
+                        <textarea name="comentario" id="comentario" cols="30" rows="10" placeholder="Escribe tu comentario aqui..."></textarea>
+                        <br>
+                        <input type="submit" value="Enviar" class="boton">
                 </form>
             </div>
         </div>

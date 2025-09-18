@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="encabezado">
+            <h1>Velox</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="">Atención al Cliente</a>
+                <a href="Contacto.html">Contacto</a>
+                <a href="IniciarSession.html"><input type="submit" value="Iniciar Sesión" class="boton" href="IniciarSesion.html"></a>
+            </nav>
+        </div>
+    </header>
+    <div class="ubicacion-exacta">
+        <h2>Nuestra Ubicación</h2>
+        <p>Velox, tu destino para soluciones innovadoras, 
+            se encuentra en Caracas, convenientemente ubicada justo al lado de la emblemática Plaza Altamira, 
+            facilitando así tu acceso a nuestros servicios.</p>
+            <br>
+        <div class="api">
+            <div id="map"></div>
+        </div>
+        <div class="nota">
+            <p>Nota: La ubicación exacta puede variar. 
+                Por favor, verifica con nuestro equipo de atención al cliente para obtener la dirección precisa.</p>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+        <p>Derechos Reservados &copy; 2025</p>
+        <p>Desarrollado por Keiver Blanco</p>
+    </footer>
+    <script src="map.js"></script>
+</body>
+</html>
