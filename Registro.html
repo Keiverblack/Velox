@@ -18,8 +18,7 @@
             <h1>Velox</h1>
             <nav>
                 <a href="index.html">Home</a>
-                <a href="">Ubicación</a>
-                <a href="">Atención al Cliente</a>
+                <a href="Ubicacion.html">Ubicación</a>
                 <a href="Contacto.html">Contacto</a>
                 
             </nav>
@@ -27,7 +26,7 @@
     </header>
     <div class="session">
         <h2>Registro</h2>
-        <form action="procesar_login.php" method="POST">
+        <form action="registro.php" method="POST">
             <label for="username">Nombre de Usuario:</label>
             <input type="text" name="username" id="soloLetras2" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
             <br>
@@ -43,7 +42,7 @@
                 <option value="0416">0416</option>
                 <option value="0426">0426</option>
             </select>
-            <input type="tel" id="phone" name="phone" placeholder="Numero de telefono" pattern="[0-9]{10}" maxlength="7" title="El número de teléfono debe tener 8 dígitos." onkeypress="return soloNumeros(event)" required>
+            <input type="tel" id="phone" name="phone" placeholder="Numero de telefono" pattern="[0-9]{7}" maxlength="7" title="El número de teléfono debe tener 7 dígitos." onkeypress="return soloNumeros(event)" required>
             <br>
             <label for="password">Contraseña:</label>
             <input type="password" id="password" name="password" required>

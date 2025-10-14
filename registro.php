@@ -24,19 +24,28 @@
             </nav>
         </div>
     </header>
-    <div class="session">
-        <h2>Iniciar Sesión</h2>
-        <form action="procesar_login.php" method="POST">
-            <label for="username">Usuario:</label>
-            <input type="text" name="username" id="soloLetras2" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
-            <br>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-            <a href="Registro.html">Registrarse</a>
-            <br>
-            <input type="submit" value="Iniciar Sesión">
-        </form>
+    <?php
+
+        $conexion = mysqli_connect("localhost", "root", "", "velox");
+
+        $usu = $_POST['username'];
+        $email = $_POST['email'];
+        $cod = $_POST['num'];
+        $cel = $_POST['phone'];
+        $cont = $_POST['password'];
+        $encrit = password_hash($cont, PASSWORD_BCRYPT);
+
+        mysqli_query($conexion, "INSERT INTO registro (usuario, correo, cod_celular, celular, contraseña) 
+                                VALUES ('$usu','$email','$cod','$cel','$encrit')");
+
+    ?>
+    <div class="mensaje">
+        <h2>¡Registro Exitoso!</h2>
+        <p>Gracias por registrarte, <?php echo $usu; ?>. Ahora puedes iniciar sesión con tus credenciales.</p>
+        <a href="IniciarSession.html" class="btn-iniciar">Iniciar Sesión</a>
+
     </div>
+
     <footer>
         <footer class="footer">
         <p>Derechos Reservados &copy; 2025</p>

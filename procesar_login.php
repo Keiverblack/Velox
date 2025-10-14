@@ -24,19 +24,32 @@
             </nav>
         </div>
     </header>
-    <div class="session">
-        <h2>Iniciar Sesión</h2>
-        <form action="procesar_login.php" method="POST">
-            <label for="username">Usuario:</label>
-            <input type="text" name="username" id="soloLetras2" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern="[A-Za-z\s]+" title="Solo se permiten letras." required>
-            <br>
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" required>
-            <a href="Registro.html">Registrarse</a>
-            <br>
-            <input type="submit" value="Iniciar Sesión">
-        </form>
-    </div>
+
+    <?php
+        $conexion = mysqli_connect("localhost", "root", "", "velox");
+
+        $usu = $_POST['username'];
+        $cont = $_POST['password'];
+        
+        $consulta = "SELECT * FROM registro WHERE usuario='$usu'";
+        $resultado = mysqli_query($conexion, $consulta);
+        $fila = mysqli_fetch_assoc($resultado);
+        if ($fila) {
+            if (password_verify($cont, $fila['contraseña'])) {
+                echo "<div class='login-mensaje success'>";
+                echo "Inicio de sesión exitoso. ¡Bienvenido, " . $usu . "!";
+                echo "</div>";
+            } else {
+                echo "<div class='login-mensaje error'>";
+                echo "Contraseña incorrecta. Inténtalo de nuevo.";
+                echo "</div>";
+            }
+        } else {
+            echo "<div class='login-mensaje error'>";
+            echo "El usuario no existe. Por favor, regístrate primero.";
+            echo "</div>";
+        }
+    ?>
     <footer>
         <footer class="footer">
         <p>Derechos Reservados &copy; 2025</p>
