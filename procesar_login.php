@@ -28,16 +28,16 @@
     <?php
         $conexion = mysqli_connect("localhost", "root", "", "velox");
 
-        $usu = $_POST['username'];
+        $email = $_POST['email'];
         $cont = $_POST['password'];
         
-        $consulta = "SELECT * FROM registro WHERE usuario='$usu'";
+        $consulta = "SELECT * FROM registro WHERE usuario='$email'";
         $resultado = mysqli_query($conexion, $consulta);
         $fila = mysqli_fetch_assoc($resultado);
         if ($fila) {
             if (password_verify($cont, $fila['contraseña'])) {
                 echo "<div class='login-mensaje success'>";
-                echo "Inicio de sesión exitoso. ¡Bienvenido, " . $usu . "!";
+                echo "Inicio de sesión exitoso. ¡Bienvenido, " . $email . "!";
                 echo "</div>";
             } else {
                 echo "<div class='login-mensaje error'>";

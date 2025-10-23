@@ -1,56 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
-    <title>Document</title>
-</head>
-<body>
-    <header class="header">
-        <div class="encabezado">
-            <h1>Velox</h1>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="Ubicacion.html">Ubicación</a>
-                <a href="Contacto.html">Contacto</a>
-                
-            </nav>
-        </div>
-    </header>
-    <?php
+<?php
+    session_start();
+    // Conexión a la base de datos
+    $servidor = "localhost";
+    $usuario_db = "root";
+    $contrasena_db = "";
+    $nombre_db = "velox"; 
 
-        $conexion = mysqli_connect("localhost", "root", "", "velox");
+    $conexion = new mysqli($servidor, $usuario_db, $contrasena_db, $nombre_db);
 
-        $usu = $_POST['username'];
-        $email = $_POST['email'];
-        $cod = $_POST['num'];
-        $cel = $_POST['phone'];
-        $cont = $_POST['password'];
-        $encrit = password_hash($cont, PASSWORD_BCRYPT);
+    if ($conexion->connect_error) {
+        // Error grave de conexión, termina la ejecución
+        die ("Error de conexión con la base de datos.");
+        die("Código de error: " . $conexion->connect_error);
+        header("Location: index.php?accion=registro"); // Redirige a la pestaña de registro
+        exit();
+    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Recibir y sanitizar datos
+            $name = $_POST['username'];
+            $email = $_POST['email'];
+            $cod_num = $_POST['num'];
+            $num = $_POST['phone'];
+            $contra = $_POST['password'];
 
-        mysqli_query($conexion, "INSERT INTO registro (usuario, correo, cod_celular, celular, contraseña) 
-                                VALUES ('$usu','$email','$cod','$cel','$encrit')");
+        // Validar el formato del email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            header("Location: Registro.html?error=formato_email_invalido");
+            exit();
+        }
 
-    ?>
-    <div class="mensaje">
-        <h2>¡Registro Exitoso!</h2>
-        <p>Gracias por registrarte, <?php echo $usu; ?>. Ahora puedes iniciar sesión con tus credenciales.</p>
-        <a href="IniciarSession.html" class="btn-iniciar">Iniciar Sesión</a>
+        // Validar la longitud de la contraseña
+        if (strlen($contra) < 8) {
+            die("La contraseña debe tener al menos 8 caracteres.");
+            die("error");
+            header("Location: registro.php");
+            exit();
+        }
 
-    </div>
+        //Validar que el email no exista ya en la base de datos
+        $consulta_email = $conexion->prepare("SELECT * FROM registro WHERE correo = ?");
+        $consulta_email->bind_param("s", $email);
+        $consulta_email->execute();
+        $resultado_email = $consulta_email->get_result();
+        if ($resultado_email->num_rows > 0) {
+            echo "El correo electrónico ya está registrado.";
+            echo "error";   
+            header("Location: Registro.html?error=email_existente"); // Redirige a la pestaña de registro
+            exit();
+        }
+        //Encriptar la contraseña
+        $encrit = md5($contra);
 
-    <footer>
-        <footer class="footer">
-        <p>Derechos Reservados &copy; 2025</p>
-        <p>Desarrollado por Keiver Blanco</p>
-    </footer>
-    <script src="validaciones.js"></script>
-</body>
-</html>
+
+        // Insertar datos en la base de datos
+        $insertar = $conexion->prepare("INSERT INTO registro (usuario, correo, cod_celular, celular, contraseña) VALUES ('$name', '$email', '$cod_num', '$num', '$encrit')");  
+
+            if ($insertar->execute()) {
+                // Registro exitoso
+                $_SESSION['alerta'] = "¡Cuenta creada con éxito! Ya puedes iniciar sesión.";
+                $_SESSION['tipo_alerta'] = 'exito';
+                header("Location: IniciarSession.html"); 
+                exit();
+            } else {
+                // Error en el registro
+                // ERROR: Manejar duplicados (por si el email ya existe)
+                if ($conexion->errno == 1062) { // 1062 es el código de error para entrada duplicada en clave UNIQUE
+                    die("El correo electrónico ya está registrado.");
+                    die("error");   
+                    header("Location: IniciarSession.html"); // Redirige a la pestaña de LOGIN
+                    exit;
+                } else {
+                    // Otros errores
+                    die("Error al registrar la cuenta. Por favor, inténtalo de nuevo.");
+                    die("error");
+                    header("Location: Registro.html");
+                    exit;
+                }
+            }
+        $insertar->close();
+    }   
+    $conexion->close();
+?>
