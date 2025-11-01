@@ -1,60 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
-    <title>Document</title>
-</head>
-<body>
-    <header class="header">
-        <div class="encabezado">
-            <h1>Velox</h1>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="Ubicacion.html">Ubicación</a>
-                <a href="Contacto.html">Contacto</a>
-                
-            </nav>
-        </div>
-    </header>
-
-    <?php
+<?php
+    session_start();
+    // Conexión a la base de datos
         $conexion = mysqli_connect("localhost", "root", "", "velox");
 
         $email = $_POST['email'];
         $cont = $_POST['password'];
-        
-        $consulta = "SELECT * FROM registro WHERE usuario='$email'";
-        $resultado = mysqli_query($conexion, $consulta);
-        $fila = mysqli_fetch_assoc($resultado);
-        if ($fila) {
-            if (password_verify($cont, $fila['contraseña'])) {
-                echo "<div class='login-mensaje success'>";
-                echo "Inicio de sesión exitoso. ¡Bienvenido, " . $email . "!";
-                echo "</div>";
-            } else {
-                echo "<div class='login-mensaje error'>";
-                echo "Contraseña incorrecta. Inténtalo de nuevo.";
-                echo "</div>";
-            }
-        } else {
-            echo "<div class='login-mensaje error'>";
-            echo "El usuario no existe. Por favor, regístrate primero.";
-            echo "</div>";
+
+        //Parte del admin
+
+        if ($email === 'admin@admin.com' || $cont === 'admin') {
+            $_SESSION['usuario'] = 'Administrador';
+            echo '
+                <script>
+                    alert("Inicio de sesión exitoso. ¡Bienvenido Administrador!");
+                    window.location = "admin.php";
+                </script>
+            ';
+            exit();
         }
-    ?>
-    <footer>
-        <footer class="footer">
-        <p>Derechos Reservados &copy; 2025</p>
-        <p>Desarrollado por Keiver Blanco</p>
-    </footer>
-    <script src="validaciones.js"></script>
-</body>
-</html>
+    
+        $consul = "SELECT * FROM registro WHERE correo='$email' AND contraseña=MD5('$cont')";
+        $resultado = mysqli_query($conexion, $consul);
+        $fila = mysqli_fetch_array($resultado);
+        if ($fila) {
+            $_SESSION['usuario'] = $fila['usuario'];
+            echo '
+                <script>
+                    alert("Inicio de sesión exitoso. ¡Bienvenido ' . $fila['usuario'] . '!");
+                    window.location = "bienvenida.html";
+                </script>
+            ';
+        } else {
+            echo '
+                <script>
+                    alert("Correo o contraseña incorrectos.");
+                    window.location = "IniciarSession.html";
+                </script>
+            ';
+        }
+?>
